@@ -35,9 +35,12 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jtfComprometimentoMensal = new javax.swing.JButton();
         jtfComprometimentoAnual = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jtfEntrada.setText("Gerenciar Entrada");
+        jtfEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfEntradaActionPerformed(evt);
+            }
+        });
 
         jtfSaida.setText("Gerenciar Saída");
         jtfSaida.addActionListener(new java.awt.event.ActionListener() {
@@ -66,15 +69,15 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jtfEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jtfEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jtfSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jtfComprometimentoMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jtfComprometimentoAnual, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,6 +101,10 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void jtfSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfSaidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfSaidaActionPerformed
+
+    private void jtfEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEntradaActionPerformed
+        new ViewEntrada().setVisible(true);
+    }//GEN-LAST:event_jtfEntradaActionPerformed
 
     /**
      * @param args the command line arguments
