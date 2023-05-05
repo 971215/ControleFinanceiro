@@ -4,19 +4,21 @@
  */
 package br.com.as.controlefinanceiro.view;
 
-import br.com.as.arquitetura.swing.JButtonUtil;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JButton;
+import br.com.as.arquitetura.swing.JFrame;
+import br.com.as.arquitetura.swing.singleton.DisplayManager;
+import br.com.as.controlefinanceiro.view.enumerations.ViewEnum;
 
-public class ViewPrincipal extends javax.swing.JFrame {
+public class ViewPrincipal extends JFrame {
 
     /**
      * Creates new form ViewPrincipal
      */
     public ViewPrincipal() {
+        super();
         initComponents();
         estiliza();
+        
+        
         
     }
 
@@ -103,7 +105,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfSaidaActionPerformed
 
     private void jtfEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEntradaActionPerformed
-        new ViewEntrada().setVisible(true);
+        ViewManagement.management(ViewEnum.VIEW_ENTRADA);
     }//GEN-LAST:event_jtfEntradaActionPerformed
 
     /**
@@ -141,15 +143,13 @@ public class ViewPrincipal extends javax.swing.JFrame {
         });
     }
     
-    private List<JButton> botoesParaEstilizar = new ArrayList<>();
     
     private void estiliza(){
-        botoesParaEstilizar.add(jtfEntrada);
-        botoesParaEstilizar.add(jtfSaida);
-        botoesParaEstilizar.add(jtfComprometimentoMensal);
-        botoesParaEstilizar.add(jtfComprometimentoAnual);
-        
-        JButtonUtil.estiliza(botoesParaEstilizar);
+       addComponent(jtfEntrada);
+       addComponent(jtfSaida);
+       addComponent(jtfComprometimentoMensal);
+       addComponent(jtfComprometimentoAnual);
+       estylize();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

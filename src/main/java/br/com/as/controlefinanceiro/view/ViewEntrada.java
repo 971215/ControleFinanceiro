@@ -4,16 +4,26 @@
  */
 package br.com.as.controlefinanceiro.view;
 
-import br.com.as.arquitetura.swing.JButtonUtil;
+import br.com.as.arquitetura.swing.JButtonEstylize;
+import br.com.as.arquitetura.swing.JFrame;
+import br.com.as.arquitetura.swing.JTextFieldEstylize;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 
 /**
  *
  * @author VIBE
  */
-public class ViewEntrada extends javax.swing.JFrame {
+public class ViewEntrada extends JFrame {
 
     /**
      * Creates new form ViewEntrada
@@ -21,8 +31,27 @@ public class ViewEntrada extends javax.swing.JFrame {
     public ViewEntrada() {
         initComponents();
         estiliza();
-    }
+    } 
+    
+    private void estilizaJComboBox() {
 
+        // Preenche o ComboBox com as datas a partir de hoje
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
+        calendar.add(Calendar.MONTH, 1);
+        Date maxDate = calendar.getTime();
+        while (currentDate.before(maxDate)) {
+            String dateString = dateFormat.format(currentDate);
+            jcbCalendario.addItem(dateString);
+            calendar.setTime(currentDate);
+            calendar.add(Calendar.DATE, 1);
+            currentDate = calendar.getTime();
+        }
+        
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,54 +62,95 @@ public class ViewEntrada extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jtfSalvar = new javax.swing.JButton();
-        jtfExcluir = new javax.swing.JButton();
-        jtfConsultar = new javax.swing.JButton();
+        jbConsultar = new javax.swing.JButton();
+        jbSalvar = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
+        jtfValor = new javax.swing.JTextField();
+        jlValor = new javax.swing.JLabel();
+        jlDescricao = new javax.swing.JLabel();
+        jlVencimento = new javax.swing.JLabel();
+        jtfDescricao = new javax.swing.JTextField();
+        jcbCalendario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jtfSalvar.setText("Salvar");
+        jbConsultar.setText("Consultar");
 
-        jtfExcluir.setText("Excluir");
+        jbSalvar.setText("Salvar");
 
-        jtfConsultar.setText("Consultar");
+        jbExcluir.setText("Excluir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                    .addComponent(jtfSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtfExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(31, 31, 31)
+                .addComponent(jbConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jtfConsultar)
-                .addGap(18, 18, 18)
-                .addComponent(jtfSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(jtfExcluir)
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSalvar)
+                    .addComponent(jbConsultar)
+                    .addComponent(jbExcluir))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
+
+        jlValor.setText("Valor:");
+
+        jlDescricao.setText("Descrição:");
+
+        jlVencimento.setText("Vencimento:");
+
+        jcbCalendario.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(412, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlValor, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jtfDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                                .addComponent(jtfValor)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlValor))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlDescricao)
+                    .addComponent(jtfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -121,21 +191,31 @@ public class ViewEntrada extends javax.swing.JFrame {
             }
         });
     }
-    
-    private List<JButton> botoesParaEstilizar = new ArrayList<>();
-    
-    private void estiliza(){
-        botoesParaEstilizar.add(jtfConsultar);
-        botoesParaEstilizar.add(jtfSalvar);
-        botoesParaEstilizar.add(jtfExcluir);
         
-        JButtonUtil.estiliza(botoesParaEstilizar);
+    private void estiliza(){
+        addComponent(jbConsultar);
+        addComponent(jbSalvar);
+        addComponent(jbExcluir);
+        addComponent(jbConsultar);
+        addComponent(jbExcluir);
+        addComponent(jbSalvar);
+        addComponent(jlValor);
+        addComponent(jlDescricao);
+        addComponent(jlVencimento);
+        estilizaJComboBox();
+        estylize();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jtfConsultar;
-    private javax.swing.JButton jtfExcluir;
-    private javax.swing.JButton jtfSalvar;
+    private javax.swing.JButton jbConsultar;
+    private javax.swing.JButton jbExcluir;
+    private javax.swing.JButton jbSalvar;
+    private javax.swing.JComboBox<String> jcbCalendario;
+    private javax.swing.JLabel jlDescricao;
+    private javax.swing.JLabel jlValor;
+    private javax.swing.JLabel jlVencimento;
+    private javax.swing.JTextField jtfDescricao;
+    private javax.swing.JTextField jtfValor;
     // End of variables declaration//GEN-END:variables
 }
